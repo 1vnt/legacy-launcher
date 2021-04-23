@@ -48,7 +48,7 @@ public class Launcher extends Applet implements Runnable, AppletStub, MouseListe
 
     public void init(final String userName, final String latestVersion, final String downloadTicket, final String sessionId) {
         try {
-            this.bgImage = ImageIO.read(LoginForm.class.getResource("dirt.png")).getScaledInstance(32, 32, 16);
+            this.bgImage = ImageIO.read(LoginForm.class.getResource("/dirt.png")).getScaledInstance(32, 32, 16);
         } catch (IOException e) {
             e.printStackTrace();
         }

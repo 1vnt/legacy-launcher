@@ -26,6 +26,8 @@ public class Util {
         File workingDirectory;
         switch (getPlatform()) {
             case linux:
+                workingDirectory = new File(userHome, '.' + applicationName + '/');
+                break;
             case solaris: {
                 workingDirectory = new File(userHome, '.' + applicationName + '/');
                 break;

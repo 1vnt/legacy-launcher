@@ -24,12 +24,10 @@ public class OptionsPanel extends JDialog {
         optionsPanel.add(labelPanel, "West");
         optionsPanel.add(fieldPanel, "Center");
         final JButton forceButton = new JButton("Force update!");
-        forceButton.addActionListener(new ActionListener() {
-            public void actionPerformed(final ActionEvent ae) {
-                GameUpdater.forceUpdate = true;
-                forceButton.setText("Will force!");
-                forceButton.setEnabled(false);
-            }
+        forceButton.addActionListener(ae -> {
+            GameUpdater.forceUpdate = true;
+            forceButton.setText("Will force!");
+            forceButton.setEnabled(false);
         });
         labelPanel.add(new JLabel("Force game update: ", 4));
         fieldPanel.add(forceButton);
