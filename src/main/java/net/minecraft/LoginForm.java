@@ -14,7 +14,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class LoginForm extends TransparentPanel {
-    private static final int PANEL_SIZE = 100;
     private static final long serialVersionUID = 1L;
     private static final Color LINK_COLOR;
     public JTextField userName;
