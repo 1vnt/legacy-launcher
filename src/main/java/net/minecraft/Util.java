@@ -135,7 +135,7 @@ public class Util {
 
     public static void openLink(final URI uri) {
         try {
-            final Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
+            final Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null);
             o.getClass().getMethod("browse", URI.class).invoke(o, uri);
         } catch (Throwable e) {
             System.out.println("Failed to open link " + uri.toString());

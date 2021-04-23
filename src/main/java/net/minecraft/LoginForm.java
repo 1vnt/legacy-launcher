@@ -1,30 +1,31 @@
 package net.minecraft;
 
-import java.io.*;
-import java.util.*;
-import javax.crypto.spec.*;
-import java.security.*;
-import java.security.spec.*;
 import javax.crypto.*;
-import javax.swing.event.*;
-import java.net.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import java.awt.*;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.HyperlinkEvent;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
+import java.net.URL;
+import java.util.Random;
 
 public class LoginForm extends TransparentPanel {
     private static final long serialVersionUID = 1L;
     private static final Color LINK_COLOR;
     public JTextField userName;
     public JPasswordField password;
-    private TransparentCheckbox rememberBox;
-    private TransparentButton launchButton;
-    private TransparentButton optionsButton;
-    private TransparentButton retryButton;
-    private TransparentButton offlineButton;
-    private TransparentLabel errorLabel;
-    private LauncherFrame launcherFrame;
+    private final TransparentCheckbox rememberBox;
+    private final TransparentButton launchButton;
+    private final TransparentButton optionsButton;
+    private final TransparentButton retryButton;
+    private final TransparentButton offlineButton;
+    private final TransparentLabel errorLabel;
+    private final LauncherFrame launcherFrame;
     private boolean outdated;
     private JScrollPane scrollPane;
 
