@@ -2,17 +2,16 @@ package net.minecraft;
 
 import java.util.*;
 
-public class MinecraftLauncher
-{
-    private static final int MIN_HEAP = 511;
-    private static final int RECOMMENDED_HEAP = 1024;
-    
-    public static void main(final String[] args) throws Exception {
-        final float heapSizeMegs = (float)(Runtime.getRuntime().maxMemory() / 1024L / 1024L);
+public class MinecraftLauncher {
+    // * 4, current minecraft should need more ram, not sure though
+    private static final int MIN_HEAP = 512 * 4;
+    private static final int RECOMMENDED_HEAP = 1024 * 4;
+
+    public static void main(final String[] args) {
+        final float heapSizeMegs = (float) (Runtime.getRuntime().maxMemory() / 1024L / 1024L);
         if (heapSizeMegs > 511.0f) {
             LauncherFrame.main(args);
-        }
-        else {
+        } else {
             try {
                 final String pathToJar = MinecraftLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
                 final ArrayList<String> params = new ArrayList<String>();
@@ -27,12 +26,8 @@ public class MinecraftLauncher
                 params.add("net.minecraft.LauncherFrame");
                 final ProcessBuilder pb = new ProcessBuilder(params);
                 final Process process = pb.start();
-                if (process == null) {
-                    throw new Exception("!");
-                }
                 System.exit(0);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 LauncherFrame.main(args);
             }

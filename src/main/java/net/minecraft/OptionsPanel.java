@@ -1,6 +1,5 @@
 package net.minecraft;
 
-;
 
 import javax.swing.border.*;
 import javax.swing.*;
@@ -8,10 +7,9 @@ import java.net.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class OptionsPanel extends JDialog
-{
+public class OptionsPanel extends JDialog {
     private static final long serialVersionUID = 1L;
-    
+
     public OptionsPanel(final Frame parent) {
         super(parent);
         this.setModal(true);
@@ -38,7 +36,7 @@ public class OptionsPanel extends JDialog
         labelPanel.add(new JLabel("Game location on disk: ", 4));
         final TransparentLabel dirLink = new TransparentLabel(Util.getWorkingDirectory().toString()) {
             private static final long serialVersionUID = 0L;
-            
+
             @Override
             public void paint(final Graphics g) {
                 super.paint(g);
@@ -49,17 +47,15 @@ public class OptionsPanel extends JDialog
                 final int height = fm.getHeight();
                 if (this.getAlignmentX() == 2.0f) {
                     x = 0;
-                }
-                else if (this.getAlignmentX() == 0.0f) {
+                } else if (this.getAlignmentX() == 0.0f) {
                     x = this.getBounds().width / 2 - width / 2;
-                }
-                else if (this.getAlignmentX() == 4.0f) {
+                } else if (this.getAlignmentX() == 4.0f) {
                     x = this.getBounds().width - width;
                 }
                 y = this.getBounds().height / 2 + height / 2 - 1;
                 g.drawLine(x + 2, y, x + width - 2, y);
             }
-            
+
             @Override
             public void update(final Graphics g) {
                 this.paint(g);
@@ -71,8 +67,7 @@ public class OptionsPanel extends JDialog
             public void mousePressed(final MouseEvent arg0) {
                 try {
                     Util.openLink(new URL("file://" + Util.getWorkingDirectory().getAbsolutePath()).toURI());
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -83,11 +78,7 @@ public class OptionsPanel extends JDialog
         final JPanel buttonsPanel = new JPanel(new BorderLayout());
         buttonsPanel.add(new JPanel(), "Center");
         final JButton doneButton = new JButton("Done");
-        doneButton.addActionListener(new ActionListener() {
-            public void actionPerformed(final ActionEvent ae) {
-                OptionsPanel.this.setVisible(false);
-            }
-        });
+        doneButton.addActionListener(ae -> OptionsPanel.this.setVisible(false));
         buttonsPanel.add(doneButton, "East");
         buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
         panel.add(buttonsPanel, "South");

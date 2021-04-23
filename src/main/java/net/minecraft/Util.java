@@ -16,18 +16,18 @@ public class Util {
 
     public static File getWorkingDirectory() {
         if (Util.workDir == null) {
-            Util.workDir = getWorkingDirectory("minecraft");
+            Util.workDir = getWorkingDirectory("leg-minecraft");
         }
         return Util.workDir;
     }
 
     public static File getWorkingDirectory(final String applicationName) {
         final String userHome = System.getProperty("user.home", ".");
-        File workingDirectory = null;
+        File workingDirectory;
         switch (getPlatform()) {
             case linux:
             case solaris: {
-                workingDirectory = new File(userHome, String.valueOf('.') + applicationName + '/');
+                workingDirectory = new File(userHome, '.' + applicationName + '/');
                 break;
             }
             case windows: {
@@ -36,7 +36,7 @@ public class Util {
                     workingDirectory = new File(applicationData, "." + applicationName + '/');
                     break;
                 }
-                workingDirectory = new File(userHome, String.valueOf('.') + applicationName + '/');
+                workingDirectory = new File(userHome, '.' + applicationName + '/');
                 break;
             }
             case macos: {
@@ -84,7 +84,7 @@ public class Util {
             connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setRequestProperty("Content-Length", new StringBuilder().append(Integer.toString(urlParameters.getBytes().length)).toString());
+            connection.setRequestProperty("Content-Length", new StringBuilder().append(urlParameters.getBytes().length).toString());
             connection.setRequestProperty("Content-Language", "en-US");
             connection.setUseCaches(false);
             connection.setDoInput(true);
@@ -92,7 +92,7 @@ public class Util {
             connection.connect();
             final Certificate[] certs = connection.getServerCertificates();
             final byte[] bytes = new byte[294];
-            final DataInputStream dis = new DataInputStream(Util.class.getResourceAsStream("minecraft.key"));
+            final DataInputStream dis = new DataInputStream(Util.class.getResourceAsStream("/minecraft.key"));
             dis.readFully(bytes);
             dis.close();
             final Certificate c = certs[0];
@@ -133,7 +133,7 @@ public class Util {
 
     public static void openLink(final URI uri) {
         try {
-            final Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", (Class<?>[]) new Class[0]).invoke(null, new Object[0]);
+            final Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
             o.getClass().getMethod("browse", URI.class).invoke(o, uri);
         } catch (Throwable e) {
             System.out.println("Failed to open link " + uri.toString());
@@ -147,7 +147,7 @@ public class Util {
         macos("macos", 3),
         unknown("unknown", 4);
 
-        private OS(final String s, final int n) {
+        OS(final String s, final int n) {
         }
     }
 }
