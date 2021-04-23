@@ -81,11 +81,13 @@ public class LoginForm extends TransparentPanel {
             final File lastLogin = new File(Util.getWorkingDirectory(), "lastlogin");
             final Cipher cipher = this.getCipher(2, "passwordfile");
             DataInputStream dis;
-            dis = new DataInputStream(new CipherInputStream(new FileInputStream(lastLogin), cipher));
-            this.userName.setText(dis.readUTF());
-            this.password.setText(dis.readUTF());
-            this.rememberBox.setSelected(this.password.getPassword().length > 0);
-            dis.close();
+            if (lastLogin.exists()) {
+                dis = new DataInputStream(new CipherInputStream(new FileInputStream(lastLogin), cipher));
+                this.userName.setText(dis.readUTF());
+                this.password.setText(dis.readUTF());
+                this.rememberBox.setSelected(this.password.getPassword().length > 0);
+                dis.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
