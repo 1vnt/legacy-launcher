@@ -73,7 +73,7 @@ public class GameUpdater implements Runnable {
         } catch (Throwable t) {
         }
         try {
-            Pack200.class.getSimpleName();
+//            Pack200.class.getSimpleName();
             this.pack200Supported = true;
         } catch (Throwable t2) {
         }
@@ -490,6 +490,7 @@ public class GameUpdater implements Runnable {
     }
 
     protected void extractPack(final String in, final String out) throws Exception {
+       /*
         final File f = new File(in);
         if (!f.exists()) {
             return;
@@ -500,6 +501,8 @@ public class GameUpdater implements Runnable {
         unpacker.unpack(f, jostream);
         jostream.close();
         f.delete();
+
+        */
     }
 
     protected void extractJars(final String path) throws Exception {

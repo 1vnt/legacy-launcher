@@ -81,7 +81,13 @@ public class LauncherFrame extends Frame
             this.showError(e.toString());
         }
     }
-    
+
+    /**
+     * Login to minecraft account
+     *
+     * @param userName username to login with
+     * @param password password to login with
+     */
     public void login(final String userName, final String password) {
         try {
             final String parameters = "user=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + 13;
